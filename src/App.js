@@ -7,7 +7,7 @@ import { generatePalette } from './colorHelpers';
 
 import './App.css';
 
-class App extends Component() {
+class App extends Component {
   findPalette(id) {
     return seedColors.find(function (palette) {
       return palette.id === id
@@ -34,3 +34,4 @@ class App extends Component() {
 }
 
 export default App;
+
