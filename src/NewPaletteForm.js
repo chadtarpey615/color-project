@@ -1,50 +1,28 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import classNames from "classnames"
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/styles';
-import DraggableColorBox from "./DraggableColorBox"
-import { ChromePicker } from "react-color";
+import seedColors from "./seedColors";
+import PaletteFormNav from "./PaletteFormNav";
+import ColorPickerForm from "./ColorPickerForm";
+import DraggableColorList from "./DraggableColorList"
 import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import {arrayMove} from "react-sortable-hoc"
 
+
+const drawerWidth = 400;
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
     },
-    appBar: {
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-    appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
+   
     hide: {
       display: 'none',
     },
@@ -54,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
     },
     drawerPaper: {
       width: drawerWidth,
+      display: "flex",
+      alignItems: "center"
     },
     drawerHeader: {
       display: 'flex',
@@ -80,6 +60,22 @@ const useStyles = makeStyles((theme) => ({
       }),
       marginLeft: 0,
     },
+
+    container: {
+        width: "90%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+
+    },
+
+    buttons: {
+        width: "100%"
+    },
+    button: {
+        width: "50%"
+    }
   }));
 
   class NewPaletteForm extends Component {
@@ -100,23 +96,7 @@ const useStyles = makeStyles((theme) => ({
       this.addRandomColor = this.addRandomColor.bind(this);
     }
   
-    componentDidMount(){
-        ValidatorForm.addValidationRule("isColorNameUnique", (value) => 
-           this.state.colors.every(
-               ({name}) => name.toLowerCase() !== value.toLowerCase()
-           )
-        );
-        ValidatorForm.addValidationRule("isColorUnique", (value) => 
-        this.state.colors.every(
-            ({name}) => color !== this.state.currentColor
-        )
-     );
-     ValidatorForm.addValidationRule("isPaletteNameUnique", (value) => 
-     this.props.palettes.every(
-         ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
-     )
-  );
-    }
+  
     handleDrawerOpen = () => {
       this.setState({ open: true });
     };
@@ -227,6 +207,7 @@ const useStyles = makeStyles((theme) => ({
                 colors={colors}
               />
             </div>
+            {/* <ColorPickerForm paletteIsFull={paletteIsFull}/> */}
           </Drawer>
           <main
             className={classNames(classes.content, {
@@ -246,6 +227,6 @@ const useStyles = makeStyles((theme) => ({
       );
     }
   }
-  export default withStyles(styles, { withTheme: true })(NewPaletteForm);
+  export default withStyles(useStyles, { withTheme: true })(NewPaletteForm);
 
-  <TextValidator label="Palette Name" value={this.state.newPaletteName} onChange={this.handleChange}/>
+//   <TextValidator label="Palette Name" value={this.state.newPaletteName} onChange={this.handleChange}/>
