@@ -61,11 +61,13 @@ import styles from "./styles/ColorPickerFormStyles";
                 />
                 <ValidatorForm 
                 onSubmit={this.handleSubmit}
-                ref="form">
+                ref="form"
+                instantValidate={false}
+                >
                     <TextValidator
                     value={newColorName}
                     className={classes.colorNameInput}
-                    placeholder="color name"
+                    placeholder="Color name"
                     name="newColorName"
                     variant="filled"
                     margin="normal"
@@ -84,7 +86,7 @@ import styles from "./styles/ColorPickerFormStyles";
                     disabled={paletteIsFull}
                     className={classes.addColor}
                     style={{
-                        backgroundColor: paletteIsFull ? "grey" : this.state.currentColor
+                        backgroundColor: paletteIsFull ? "grey" : currentColor
                     }}
                     >
                         {paletteIsFull ? "Palette Full" : "Add Color"}
