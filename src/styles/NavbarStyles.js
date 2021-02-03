@@ -12,14 +12,14 @@ export default{
         padding: "0 13px",
         fontSize: "22px",
         backgroundColor: "#eceff1",
-         fontFamily: "Roboto",
+         fontFamily: "mono",
         /* google fonts later if you want Roboto */
         height: "100%",
         display: "flex",
         alignItems: "center",
         "& a": {
             textDecoration: "none",
-        color: "black"
+        color: "black",
         },
         [sizes.down("xs")]: {
             display: "none"
@@ -47,7 +47,7 @@ export default{
             marginLeft: "-7px",
             marginTop: "-3px"
         },
-        [sizes.down("md")]: {
+        [sizes.down("sm")]: {
             width: "150px"
         }
     },

@@ -11,7 +11,7 @@ return (
             key={color.name}
             color={color.color}
             name={color.name}
-            handleClick={() => this.removeColor(color.name)}
+            handleClick={() => removeColor(color.name)}
             />
         ))}
     </div>
