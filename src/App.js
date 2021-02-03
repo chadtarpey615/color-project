@@ -62,7 +62,10 @@ class App extends Component {
         <Route
           exact path="/"
           render={routeProps => (
-            <PaletteList palettes={this.state.palettes} deletePalette={this.deletePalette}{...routeProps} />)} />
+            <PaletteList
+             palettes={this.state.palettes}
+              deletePalette={this.deletePalette}
+              {...routeProps} />)} />
 
 
         <Route
